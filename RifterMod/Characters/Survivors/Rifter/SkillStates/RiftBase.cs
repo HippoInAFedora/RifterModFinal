@@ -440,7 +440,7 @@ namespace RifterMod.Survivors.Rifter.SkillStates
 
         public virtual float RiftDistance()
         {
-            return RifterStaticValues.riftPrimaryDistance * RifterConfig.distanceMultiplier.Value;
+            return RifterStaticValues.riftPrimaryDistance;
         }
 
         public virtual float BlastRadius()

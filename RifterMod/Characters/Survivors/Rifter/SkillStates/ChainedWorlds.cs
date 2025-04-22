@@ -119,7 +119,7 @@ namespace RifterMod.Survivors.Rifter.SkillStates
 
         public override float RiftDistance()
         {
-            return RifterStaticValues.riftPrimaryDistance * RifterConfig.distanceMultiplier.Value;
+            return RifterStaticValues.riftPrimaryDistance;
         }
 
 
