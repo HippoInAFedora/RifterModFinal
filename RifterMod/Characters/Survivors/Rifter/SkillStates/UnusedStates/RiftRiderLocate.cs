@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 namespace RifterMod.Characters.Survivors.Rifter.SkillStates.UnusedStates
 {
-    public class RiftRiderLocate : BaseState
+    public class NemTeleportLocate : BaseState
     {
         //This is deprecated. Still exists solely for EntanglementLocate to work correctly
         public static GameObject teleportLocatorPrefab = EntityStates.Huntress.ArrowRain.areaIndicatorPrefab;

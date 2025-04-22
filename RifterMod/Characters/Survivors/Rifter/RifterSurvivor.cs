@@ -31,16 +31,16 @@ namespace RifterMod.Survivors.Rifter
         public override string modelPrefabName => "mdlRifter";
         public override string displayPrefabName => "RifterDisplay";
 
-        public const string Rifter_PREFIX = RifterPlugin.DEVELOPER_PREFIX + "_Rifter_";
+        public const string RIFTER_PREFIX = RifterPlugin.DEVELOPER_PREFIX + "_RIFTER_";
 
         //used when registering your survivor's language tokens
-        public override string survivorTokenPrefix => Rifter_PREFIX;
+        public override string survivorTokenPrefix => RIFTER_PREFIX;
 
         public override BodyInfo bodyInfo => new BodyInfo
         {
             bodyName = bodyName,
-            bodyNameToken = Rifter_PREFIX + "NAME",
-            subtitleNameToken = Rifter_PREFIX + "SUBTITLE",
+            bodyNameToken = RIFTER_PREFIX + "NAME",
+            subtitleNameToken = RIFTER_PREFIX + "SUBTITLE",
 
             characterPortrait = assetBundle.LoadAsset<Texture>("texRifterIcon"),
             bodyColor = new Color(0.329f, 0.42f, 0.651f),
@@ -158,7 +158,7 @@ namespace RifterMod.Survivors.Rifter
 
         public void AddHitboxes()
         {
-
+            
         }
 
         public override void InitializeEntityStateMachines()
@@ -200,8 +200,8 @@ namespace RifterMod.Survivors.Rifter
         {
             SkillLocator skillLocator = bodyPrefab.GetComponent<SkillLocator>();
             skillLocator.passiveSkill.enabled = true;
-            skillLocator.passiveSkill.skillNameToken = Rifter_PREFIX + "PASSIVE_RIFT_BOOST";
-            skillLocator.passiveSkill.skillDescriptionToken = Rifter_PREFIX + "PASSIVE_RIFT_BOOST_DESCRIPTION";
+            skillLocator.passiveSkill.skillNameToken = RIFTER_PREFIX + "PASSIVE_RIFT_BOOST";
+            skillLocator.passiveSkill.skillDescriptionToken = RIFTER_PREFIX + "PASSIVE_RIFT_BOOST_DESCRIPTION";
             skillLocator.passiveSkill.icon = assetBundle.LoadAsset<Sprite>("texImperfectionFinal");
         }
 
@@ -210,8 +210,8 @@ namespace RifterMod.Survivors.Rifter
             SkillDef primarySkillDef1 = Skills.CreateSkillDef<SkillDef>(new SkillDefInfo
                 (
                     "FocusedRifts",
-                    Rifter_PREFIX + "PRIMARY_GAUNTLET_RANGED",
-                    Rifter_PREFIX + "PRIMARY_GAUNTLET_RANGED_DESCRIPTION",
+                    RIFTER_PREFIX + "PRIMARY_GAUNTLET_RANGED",
+                    RIFTER_PREFIX + "PRIMARY_GAUNTLET_RANGED_DESCRIPTION",
                     assetBundle.LoadAsset<Sprite>("texFocusedRiftFinal"),
                     new EntityStates.SerializableEntityStateType(typeof(RiftFocus)),
                     "Weapon",
@@ -223,8 +223,8 @@ namespace RifterMod.Survivors.Rifter
             SkillDef primarySkillDef2 = Skills.CreateSkillDef<SkillDef>(new SkillDefInfo
                (
                    "GauntletBuckshot",
-                   Rifter_PREFIX + "PRIMARY_BUCKSHOT",
-                   Rifter_PREFIX + "PRIMARY_BUCKSHOT_DESCRIPTION",
+                   RIFTER_PREFIX + "PRIMARY_BUCKSHOT",
+                   RIFTER_PREFIX + "PRIMARY_BUCKSHOT_DESCRIPTION",
                    assetBundle.LoadAsset<Sprite>("texScatteredRiftFinal"),
                    new EntityStates.SerializableEntityStateType(typeof(RiftBuckshot)),
                    "Weapon",
@@ -241,8 +241,8 @@ namespace RifterMod.Survivors.Rifter
             SkillDef secondarySkillDef1 = Skills.CreateSkillDef<SkillDef>(new SkillDefInfo
             {
                 skillName = "FractureShot",
-                skillNameToken = Rifter_PREFIX + "SECONDARY_FRACTURE",
-                skillDescriptionToken = Rifter_PREFIX + "SECONDARY_FRACTURE_DESCRIPTION",
+                skillNameToken = RIFTER_PREFIX + "SECONDARY_FRACTURE",
+                skillDescriptionToken = RIFTER_PREFIX + "SECONDARY_FRACTURE_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texFractureFinal"),
                 keywordTokens = new[] { Tokens.fractureKeyword},
                 activationState = new EntityStates.SerializableEntityStateType(typeof(FractureShot)),
@@ -268,8 +268,8 @@ namespace RifterMod.Survivors.Rifter
             SkillDef secondarySkillDef2 = Skills.CreateSkillDef<SkillDef>(new SkillDefInfo
             {
                 skillName = "WanderingRift",
-                skillNameToken = Rifter_PREFIX + "SECONDARY_FAULT_LINE",
-                skillDescriptionToken = Rifter_PREFIX + "SECONDARY_FAULT_LINE_DESCRIPTION",
+                skillNameToken = RIFTER_PREFIX + "SECONDARY_FAULT_LINE",
+                skillDescriptionToken = RIFTER_PREFIX + "SECONDARY_FAULT_LINE_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texWanderRift"),
                 //keywordTokens = new[] { Tokens.overchargedChainedKeyword },
                 activationState = new EntityStates.SerializableEntityStateType(typeof(FireRiftProjectile)),
@@ -297,8 +297,8 @@ namespace RifterMod.Survivors.Rifter
             RifterSkillDef utilitySkillDef1 = Skills.CreateSkillDef<RifterSkillDef>(new SkillDefInfo
             {
                 skillName = "Slipstream",
-                skillNameToken = Rifter_PREFIX + (RifterConfig.cursed.Value == true ? "UTILITY_PRESTIGE_SLIPSTREAM" : "UTILITY_SLIPSTREAM"),
-                skillDescriptionToken = Rifter_PREFIX + "UTILITY_SLIPSTREAM_DESCRIPTION",
+                skillNameToken = RIFTER_PREFIX + (RifterConfig.cursed.Value == true ? "UTILITY_PRESTIGE_SLIPSTREAM" : "UTILITY_SLIPSTREAM"),
+                skillDescriptionToken = RIFTER_PREFIX + "UTILITY_SLIPSTREAM_DESCRIPTION",
                 skillIcon = RifterConfig.cursed.Value == true ? assetBundle.LoadAsset<Sprite>("texPrestigeSlipstream") : assetBundle.LoadAsset<Sprite>("texSlipstreamFinal"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(Slipstream)),
@@ -323,8 +323,8 @@ namespace RifterMod.Survivors.Rifter
             SkillDef utilitySkillDef2 = Skills.CreateSkillDef<SkillDef>(new SkillDefInfo
             {
                 skillName = "QuantumGates",
-                skillNameToken = Rifter_PREFIX + "UTILITY_QUANTUM_RIFT",
-                skillDescriptionToken = Rifter_PREFIX + "UTILITY_QUANTUM_RIFT_DESCRIPTION",
+                skillNameToken = RIFTER_PREFIX + "UTILITY_QUANTUM_RIFT",
+                skillDescriptionToken = RIFTER_PREFIX + "UTILITY_QUANTUM_RIFT_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texPortalUtilityFinal"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(PortalLocate)),
@@ -355,11 +355,11 @@ namespace RifterMod.Survivors.Rifter
             RifterSkillDef specialSkillDef1 = Skills.CreateSkillDef<RifterSkillDef>(new SkillDefInfo
             {
                 skillName = "Timelock",
-                skillNameToken = Rifter_PREFIX + "SPECIAL_TIMELOCK",
-                skillDescriptionToken = Rifter_PREFIX + "SPECIAL_TIMELOCK_DESCRIPTION",
+                skillNameToken = RIFTER_PREFIX + "SPECIAL_TIMELOCK",
+                skillDescriptionToken = RIFTER_PREFIX + "SPECIAL_TIMELOCK_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texTimelockFinal"),
                 keywordTokens = new[] {Tokens.crushingKeyword},
-                activationState = new EntityStates.SerializableEntityStateType(typeof(TimelockLocate)),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(TimelockDrop)),
                 activationStateMachineName = "Weapon",
                 interruptPriority = InterruptPriority.PrioritySkill,
 
@@ -376,8 +376,8 @@ namespace RifterMod.Survivors.Rifter
             SkillDef specialSkillDef2 = Skills.CreateSkillDef<SkillDef>(new SkillDefInfo
             {
                 skillName = "ChainedWorlds",
-                skillNameToken = Rifter_PREFIX + "UTILITY_CHAINED_WORLDS",
-                skillDescriptionToken = Rifter_PREFIX + "UTILITY_CHAINED_WORLDS_DESCRIPTION",
+                skillNameToken = RIFTER_PREFIX + "UTILITY_CHAINED_WORLDS",
+                skillDescriptionToken = RIFTER_PREFIX + "UTILITY_CHAINED_WORLDS_DESCRIPTION",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texChainRift"),
 
                 activationState = new EntityStates.SerializableEntityStateType(typeof(ChainedWorldsStartup)),
@@ -407,8 +407,8 @@ namespace RifterMod.Survivors.Rifter
             RifterSkillDef scepterSkillDef1 = Skills.CreateSkillDef<RifterSkillDef>(new SkillDefInfo
             {
                 skillName = "ToSingularity",
-                skillNameToken = Rifter_PREFIX + "SPECIAL_RECURSION_SCEPTER",
-                skillDescriptionToken = Rifter_PREFIX + "SPECIAL_RECURSION_DESCRIPTION_SCEPTER",
+                skillNameToken = RIFTER_PREFIX + "SPECIAL_RECURSION_SCEPTER",
+                skillDescriptionToken = RIFTER_PREFIX + "SPECIAL_RECURSION_DESCRIPTION_SCEPTER",
                 skillIcon = assetBundle.LoadAsset<Sprite>("texSpecialIcon"),
                 //keywordTokens = new[] { Tokens.overchargedKeyword},
                 //activationState = new EntityStates.SerializableEntityStateType(typeof(RecursionLocateScepter)),
@@ -463,7 +463,7 @@ namespace RifterMod.Survivors.Rifter
             #region MasterySkin
 
             ////creating a new skindef as we did before
-            //SkinDef masterySkin = Modules.Skins.CreateSkinDef(Rifter_PREFIX + "MASTERY_SKIN_NAME",
+            //SkinDef masterySkin = Modules.Skins.CreateSkinDef(RIFTER_PREFIX + "MASTERY_SKIN_NAME",
             //    assetBundle.LoadAsset<Sprite>("texMasteryAchievement"),
             //    defaultRendererinfos,
             //    prefabCharacterModel.gameObject,

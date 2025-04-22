@@ -10,7 +10,6 @@ using R2API;
 using UnityEngine;
 using RifterMod.Modules;
 using RiskOfOptions.Options;
-using RifterMod.Characters.Survivors.Rifter.Components;
 using BepInEx.Bootstrap;
 using System.Runtime.CompilerServices;
 using RiskOfOptions;
@@ -18,6 +17,11 @@ using EmotesAPI;
 using TMPro;
 using R2API.Networking;
 using RifterMod.Modules.Networking;
+using RifterMod.Survivors.NemRifter;
+using UnityEngine.Networking;
+using UnityEngine.UIElements;
+using RifterMod.Characters.Survivors.NemRifter.Components.Old;
+using RifterMod.Characters.Survivors.NemRifter.Components;
 
 
 [module: UnverifiableCode]
@@ -48,6 +52,7 @@ namespace RifterMod
         public static RifterPlugin instance;
 
         public static BodyIndex rifterIndex;
+        public static BodyIndex nemRifterIndex;
 
         public static GameObject hudInstance;
 
@@ -78,6 +83,7 @@ namespace RifterMod
             NetworkingAPI.RegisterMessageType<AddGameObjectOnRequest>();
             // character initialization
             new RifterSurvivor().Initialize();
+            //new NemRifterSurvivor().Initialize();
 
             // make a content pack and add it. this has to be last
             new Modules.ContentPacks().Initialize();
@@ -108,12 +114,72 @@ namespace RifterMod
             On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.CharacterBody.OnBuffFinalStackLost += CharacterBody_OnBuffFinalStackLost;            
             On.RoR2.CharacterBody.UpdateAllTemporaryVisualEffects += CharacterBody_UpdateAllTemporaryVisualEffects;
+            On.RoR2.CharacterMaster.OnBodyStart += CharacterMaster_OnBodyStart;
+            On.RoR2.GlobalEventManager.OnCharacterDeath += GlobalEventManager_OnCharacterDeath;
             if (Chainloader.PluginInfos.ContainsKey("com.weliveinasociety.CustomEmotesAPI"))
             {
                 On.RoR2.SurvivorCatalog.Init += SurvivorCatalog_Init;
             }
-            //On.RoR2.UI.HUD.Awake += HUD_Awake;
-            //On.RoR2.UI.HUD.Update += HUD_Update;
+        }
+
+        private static void GlobalEventManager_OnCharacterDeath(On.RoR2.GlobalEventManager.orig_OnCharacterDeath orig, GlobalEventManager self, DamageReport damageReport)
+        {           
+            CharacterBody victim = damageReport.victim.body;
+            if (victim != null)
+            {
+                int buffCount = victim.GetBuffCount(NemRifterBuffs.instabilityDebuff);
+                if (buffCount > 0)
+                {
+                    NemRifterOwnerHolder nemRifterOwnerHolder = victim.gameObject.GetComponent<NemRifterOwnerHolder>();
+
+                    if (nemRifterOwnerHolder.owner != null)
+                    {
+                            float radius = buffCount;
+                            float expireDuration = buffCount + 5f > 30f ? 30f : buffCount + 5f;
+                            GameObject riftZoneInstance = Object.Instantiate(NemRifterAssets.riftZonePillar, victim.corePosition, Util.QuaternionSafeLookRotation(Vector3.forward));
+                            riftZoneInstance.GetComponent<DestroyOnTimer>().duration = expireDuration;
+                            riftZoneInstance.GetComponent<GenericOwnership>().ownerObject = nemRifterOwnerHolder.owner;
+                            TeamFilter teamFilter = riftZoneInstance.GetComponent<TeamFilter>();
+                            teamFilter.teamIndex = TeamIndex.Player;
+                            TeamFilter teamFilterBuffWard = riftZoneInstance.transform.GetChild(0).GetComponent<TeamFilter>();
+                            teamFilterBuffWard.teamIndex = TeamIndex.Player;
+                            BuffWard buffWardTeam = riftZoneInstance.transform.GetChild(0).GetComponent<BuffWard>();
+                            if (buffWardTeam != null)
+                            {
+                                buffWardTeam.radius = radius;
+                                buffWardTeam.buffDef = NemRifterBuffs.negateDebuff;
+                                buffWardTeam.expireDuration = expireDuration;
+                            }
+                            NetworkServer.Spawn(riftZoneInstance);
+                        }
+                    }
+                }
+            orig(self, damageReport);
+        }
+
+        private static void CharacterMaster_OnBodyStart(On.RoR2.CharacterMaster.orig_OnBodyStart orig, CharacterMaster self, CharacterBody body)
+        {
+            orig (self, body);
+            if (body.bodyIndex == nemRifterIndex && NetworkServer.active)
+            {
+                float radius = 40f;
+                float expireDuration = 30f;
+                GameObject riftZoneInstance = Object.Instantiate(NemRifterAssets.riftZonePillar, body.corePosition, body.transform.rotation);
+                riftZoneInstance.GetComponent<DestroyOnTimer>().duration = expireDuration;
+                riftZoneInstance.GetComponent<GenericOwnership>().ownerObject = self.gameObject;
+                TeamFilter teamFilter = riftZoneInstance.GetComponent<TeamFilter>();
+                teamFilter.teamIndex = TeamIndex.Player;
+                TeamFilter teamFilterBuffWard = riftZoneInstance.transform.GetChild(0).GetComponent<TeamFilter>();
+                teamFilterBuffWard.teamIndex = TeamIndex.Player;
+                BuffWard buffWardTeam = riftZoneInstance.transform.GetChild(0).GetComponent<BuffWard>();
+                if (buffWardTeam != null)
+                {
+                    buffWardTeam.radius = radius;
+                    buffWardTeam.buffDef = NemRifterBuffs.negateDebuff;
+                    buffWardTeam.expireDuration = expireDuration;
+                }
+                NetworkServer.Spawn(riftZoneInstance);
+            }
         }
 
         private static void CharacterBody_UpdateAllTemporaryVisualEffects(On.RoR2.CharacterBody.orig_UpdateAllTemporaryVisualEffects orig, CharacterBody self)
@@ -143,6 +209,40 @@ namespace RifterMod
             {
                 self.characterMotor.useGravity = true;
             }
+
+            if (buffDef == NemRifterBuffs.instabilityTriggerDebuff && NetworkServer.active)
+            {
+                NemRifterOwnerHolder nemRifterOwnerHolder = self.gameObject.GetComponent<NemRifterOwnerHolder>();
+
+                if (nemRifterOwnerHolder && nemRifterOwnerHolder.owner != null)
+                {
+                    int buffCount = self.GetBuffCount(NemRifterBuffs.instabilityDebuff);
+                    if (buffCount > 0)
+                    {
+                        for (int i = 0; (i < buffCount); i++)
+                        {
+                            self.RemoveBuff(NemRifterBuffs.instabilityDebuff);
+                        }
+                        float radius = buffCount;
+                        float expireDuration = buffCount + 5f > 30f ? 30f : buffCount + 5f;
+                        GameObject riftZoneInstance = Object.Instantiate(NemRifterAssets.riftZonePillar, self.corePosition, Util.QuaternionSafeLookRotation(Vector3.forward));
+                        riftZoneInstance.GetComponent<DestroyOnTimer>().duration = expireDuration;
+                        riftZoneInstance.GetComponent<GenericOwnership>().ownerObject = nemRifterOwnerHolder.owner;
+                        TeamFilter teamFilter = riftZoneInstance.GetComponent<TeamFilter>();
+                        teamFilter.teamIndex = TeamIndex.Player;
+                        TeamFilter teamFilterBuffWard = riftZoneInstance.transform.GetChild(0).GetComponent<TeamFilter>();
+                        teamFilterBuffWard.teamIndex = TeamIndex.Player;
+                        BuffWard buffWardTeam = riftZoneInstance.transform.GetChild(0).GetComponent<BuffWard>();
+                        if (buffWardTeam != null)
+                        {
+                            buffWardTeam.radius = radius;
+                            buffWardTeam.buffDef = NemRifterBuffs.negateDebuff;
+                            buffWardTeam.expireDuration = expireDuration;
+                        }
+                        NetworkServer.Spawn(riftZoneInstance);
+                    }
+                }
+            }
         }
 
         private static void CharacterBody_RecalculateStats(On.RoR2.CharacterBody.orig_RecalculateStats orig, CharacterBody self)
@@ -170,12 +270,23 @@ namespace RifterMod
                 self.moveSpeed *= 1 - shatterStacks / 10;
                 self.armor -= shatterStacks * 5;
             }
+            
+            if (self.HasBuff(NemRifterBuffs.collapseRifts))
+            {
+                self.moveSpeed *= 1.5f;
+            }
+
+            if (self.HasBuff(NemRifterBuffs.negateDebuff))
+            {
+                self.baseRegen = 2.5f;
+            }
         }
 
         private static System.Collections.IEnumerator BodyCatalog_Init(On.RoR2.BodyCatalog.orig_Init orig)
         {           
             yield return orig();
             rifterIndex = BodyCatalog.FindBodyIndex("RifterBody(Clone)");
+            //nemRifterIndex = BodyCatalog.FindBodyIndex("NemRifterBody(Clone)");
         }
 
         //private static void HUD_Update(On.RoR2.UI.HUD.orig_Update orig, RoR2.UI.HUD self)
@@ -219,6 +330,65 @@ namespace RifterMod
                 {
                     victimBody.AddTimedBuff(RifterBuffs.superShatterDebuff, 1f);
                 }
+            }
+
+            if (body && body.bodyIndex == nemRifterIndex)
+            {
+                if (victimBody != null && DamageAPI.HasModdedDamageType(damageInfo, NemRifterDamage.instabilityProcDamage))
+                {
+                    if (NetworkServer.active)
+                    {
+                        if (!victimBody.HasBuff(NemRifterBuffs.instabilityDebuff))
+                        {
+                            victimBody.AddTimedBuff(NemRifterBuffs.instabilityTriggerDebuff, 5f);
+                            if (!victim.GetComponent<NemRifterOwnerHolder>())
+                            {
+                                victim.gameObject.AddComponent<NemRifterOwnerHolder>();
+                            }
+                            victim.GetComponent<NemRifterOwnerHolder>().owner = body.gameObject;
+                        }
+                        victimBody.AddBuff(NemRifterBuffs.instabilityDebuff);
+                    }
+                }
+
+                if (victimBody != null && DamageAPI.HasModdedDamageType(damageInfo, NemRifterDamage.instabilityTriggerDamage))
+                {
+                    if (NetworkServer.active)
+                    {
+                        if (victimBody.HasBuff(NemRifterBuffs.instabilityTriggerDebuff))
+                        {
+                            victimBody.RemoveBuff(NemRifterBuffs.instabilityTriggerDebuff);
+                        }
+                    }
+
+                }
+
+                //if (body && body.bodyIndex == nemRifterIndex)
+                //{
+                //    if (victimBody != null && DamageAPI.HasModdedDamageType(damageInfo, NemRifterDamage.screenSlashDamage))
+                //    {
+                //        if (NetworkServer.active)
+                //        {
+                //            GameObject riftZoneInstance = Object.Instantiate(NemRifterAssets.riftZonePillar, victimBody.corePosition, victimBody.transform.rotation);
+                //            BuffWard buffWardTeam = riftZoneInstance.transform.GetChild(0).GetComponent<BuffWard>();
+                //            if (buffWardTeam != null)
+                //            {
+                //                buffWardTeam.buffDef = NemRifterBuffs.negateDebuff;
+                //            }
+                //            BuffWard buffWardEnemy = riftZoneInstance.transform.GetChild(1).GetComponent<BuffWard>();
+                //            TeamFilter teamFilter = riftZoneInstance.GetComponent<TeamFilter>();
+                //            teamFilter.teamIndex = TeamIndex.Player;
+                //            if (buffWardEnemy != null)
+                //            {
+                //                buffWardEnemy.radius = 5f;
+                //                buffWardEnemy.buffDef = NemRifterBuffs.riftZoneDebuff;
+                //                buffWardEnemy.buffTimer = .2f;
+                //                buffWardEnemy.interval = .2f;
+                //                buffWardEnemy.invertTeamFilter = true;
+                //            }
+                //            NetworkServer.Spawn(riftZoneInstance);
+                //        }
+                //    }
             }
         }
 

@@ -1,11 +1,12 @@
 ﻿using EntityStates;
+using R2API;
 using RoR2;
 using RoR2.Audio;
 using RoR2.Skills;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using static R2API.DamageAPI;
 
 namespace RifterMod.Modules.BaseStates
 {
@@ -16,6 +17,7 @@ namespace RifterMod.Modules.BaseStates
         protected string hitboxGroupName = "SwordGroup";
 
         protected DamageType damageType = DamageType.Generic;
+        protected List<ModdedDamageType> moddedDamageTypeHolder = new List<ModdedDamageType>();
         protected float damageCoefficient = 3.5f;
         protected float procCoefficient = 1f;
         protected float pushForce = 300f;
@@ -37,7 +39,7 @@ namespace RifterMod.Modules.BaseStates
         protected string playbackRateParam = "Slash.playbackRate";
         protected GameObject swingEffectPrefab;
         protected GameObject hitEffectPrefab;
-        protected NetworkSoundEventIndex impactSound;
+        protected NetworkSoundEventIndex impactSound = NetworkSoundEventIndex.Invalid;
 
         public float duration;
         private bool hasFired;
@@ -61,6 +63,10 @@ namespace RifterMod.Modules.BaseStates
 
             attack = new OverlapAttack();
             attack.damageType = damageType;
+            foreach (ModdedDamageType item in moddedDamageTypeHolder)
+            {
+                DamageAPI.AddModdedDamageType(attack, item);
+            }
             attack.attacker = gameObject;
             attack.inflictor = gameObject;
             attack.teamIndex = GetTeam();
@@ -90,7 +96,7 @@ namespace RifterMod.Modules.BaseStates
 
         protected virtual void PlaySwingEffect()
         {
-            EffectManager.SimpleMuzzleFlash(swingEffectPrefab, gameObject, muzzleString, true);
+            EffectManager.SimpleMuzzleFlash(swingEffectPrefab, gameObject, muzzleString, false);
         }
 
         protected virtual void OnHitEnemyAuthority()
@@ -121,7 +127,7 @@ namespace RifterMod.Modules.BaseStates
             }
         }
 
-        private void FireAttack()
+        protected virtual void FireAttack()
         {
             if (isAuthority)
             {
@@ -149,7 +155,7 @@ namespace RifterMod.Modules.BaseStates
         {
             base.FixedUpdate();
 
-            hitPauseTimer -= Time.fixedDeltaTime;
+            hitPauseTimer -= Time.deltaTime;
 
             if (hitPauseTimer <= 0f && inHitPause)
             {
@@ -158,7 +164,7 @@ namespace RifterMod.Modules.BaseStates
 
             if (!inHitPause)
             {
-                stopwatch += Time.fixedDeltaTime;
+                stopwatch += Time.deltaTime;
             }
             else
             {

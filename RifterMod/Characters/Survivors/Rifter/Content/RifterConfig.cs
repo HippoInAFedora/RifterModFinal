@@ -9,6 +9,8 @@ namespace RifterMod.Survivors.Rifter
 
         public static ConfigEntry<bool> cursed;
 
+        public static ConfigEntry<float> distanceMultiplier;
+
 
         public static void Init()
         {
@@ -17,6 +19,8 @@ namespace RifterMod.Survivors.Rifter
             teleportYourFriends = Config.BindAndOptions(section, "Teleport Your Friends", defaultValue: false, "Teleport your firends!");
 
             cursed = Config.BindAndOptions(section, "Cursed", defaultValue: false, "Adds sillies, such as blind pests losing the ability to fly once teleported. [Restart Required]");
+
+            distanceMultiplier = Config.BindAndOptionsSlider(section, "Distance Multiplier", defaultValue: 1.0f, "Adjust the perfect distance for Rifter's primary and primary-secondary ability, 1.0 being default distance (about 50m and 25m).", .1f, 2f, false);
         }
     }
 }

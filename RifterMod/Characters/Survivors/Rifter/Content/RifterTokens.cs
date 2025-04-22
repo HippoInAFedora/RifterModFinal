@@ -19,7 +19,7 @@ namespace RifterMod.Survivors.Rifter
 
         public static void AddRifterTokens()
         {
-            string prefix = RifterSurvivor.Rifter_PREFIX;
+            string prefix = RifterSurvivor.RIFTER_PREFIX;
 
             string desc = "The Rifter utilizes strategic positioning to create devestating rifts in reality.<color=#CCD3E0>" + Environment.NewLine + Environment.NewLine
              + "<!> Rifts are significantly stronger than fracture lines - positioning is key!" + Environment.NewLine + Environment.NewLine

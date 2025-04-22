@@ -38,9 +38,9 @@ namespace RifterMod.Survivors.Rifter
 
             Modules.Content.AddEntityState(typeof(ChainedWorldsStartup));
 
-            Modules.Content.AddEntityState(typeof(TimelockLocate));
-
             Modules.Content.AddEntityState(typeof(TimelockDrop));
+
+            Modules.Content.AddEntityState(typeof(TimelockLocate));
 
             Modules.Content.AddEntityState(typeof(RifterMain));
         }

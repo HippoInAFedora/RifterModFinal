@@ -7,8 +7,8 @@ namespace RifterMod.Survivors.Rifter.Achievements
     [RegisterAchievement(identifier, unlockableIdentifier, null, 10)]
     public class RifterMasteryAchievement : BaseMasteryAchievement
     {
-        public const string identifier = RifterSurvivor.Rifter_PREFIX + "masteryAchievement";
-        public const string unlockableIdentifier = RifterSurvivor.Rifter_PREFIX + "masteryUnlockable";
+        public const string identifier = RifterSurvivor.RIFTER_PREFIX + "masteryAchievement";
+        public const string unlockableIdentifier = RifterSurvivor.RIFTER_PREFIX + "masteryUnlockable";
 
         public override string RequiredCharacterBody => RifterSurvivor.instance.bodyName;
 

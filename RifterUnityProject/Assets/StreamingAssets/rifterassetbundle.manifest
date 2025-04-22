@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2955837199
+CRC: 969175850
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b36a4b3cddfacc5cfcad0158e71fc7f7
+    Hash: b3c4526bc7dddd88624662c70a2ff617
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c3695b2077dd9fce9bbf13f57fd5a4c8
+    Hash: 0ca9beb867b4f48bed9028b0306b55a5
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,6 +27,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 54
   Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
 - Class: 90
@@ -37,16 +39,48 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 96
   Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 372142912, guid: d382a022563c7517aadbc92ca1060016, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
+  Script: {fileID: 1297580292, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 511512695, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 261c50d8a80898e4ebf2e8e415ea6766, type: 3}
+  Script: {fileID: -10805909, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 68ee60b5bcd2668489cac0473619dffe, type: 3}
+  Script: {fileID: -1811796171, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 751bd37d2e55f5f448dbb0d97812d9ba, type: 3}
+  Script: {fileID: -1845404088, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -226763392, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1788389205, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1193882409, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1783796254, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1294804675, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1918207524, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1848696948, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: 1790887305, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -899414464, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1819008361, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -517518216, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
+- Class: 114
+  Script: {fileID: -1895344032, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9a68da65c907acb4eb4dbcd042f172e7, type: 3}
 - Class: 115
@@ -76,16 +110,27 @@ ClassTypes:
 - Class: 319
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
-- AssemblyName: Assembly-CSharp
+- AssemblyName: RoR2
   ClassName: ChildLocator/NameTransformPair
+- AssemblyName: RoR2
+  ClassName: EntityStates.SerializableEntityStateType
+- AssemblyName: RoR2
+  ClassName: RoR2.DamageTypeCombo
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.FontData
 - AssemblyName: UnityEngine.UI
   ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: com.unity.multiplayer-hlapi.Runtime
+  ClassName: UnityEngine.Networking.NetworkHash128
+- AssemblyName: com.unity.multiplayer-hlapi.Runtime
+  ClassName: UnityEngine.Networking.NetworkSceneId
 Assets:
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_WalkLFT.anim
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/RiftZoneAreaIndicator.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Rifter_Texture_BaseColor.png
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_Jump.anim
 - Assets/RifterAssets/RifterBundle/Shader Graph/riftedHeadShader.shader
@@ -96,6 +141,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/Shader Graph/timelockOrbShader.shader
 - Assets/RifterAssets/RifterBundle/Materials/matRebellion.mat
 - Assets/RifterAssets/RifterBundle/Materials/matRifterMain.mat
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/NemMats/Shaders/riftShotShader.shader
 - Assets/RifterAssets/RifterBundle/Mesh/meshNeoCoat.mesh
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matShatterCyl.mat
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_Descending.anim
@@ -128,6 +174,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/Icons/texShatterDebuff.png
 - Assets/RifterAssets/RifterBundle/Materials/matDante.mat
 - Assets/RifterAssets/RifterBundle/VFX/FractureTrail.prefab
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/NemMats/matRiftBorder.mat
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rifter_Texture_BaseColor.mat
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rifter_Texture.mat
 - Assets/RifterAssets/RifterBundle/VFX/Textures/texSmoke.png
@@ -143,13 +190,16 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Materials/HenryOld/matTrail.mat
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_CSSIdle.anim
 - Assets/RifterAssets/RifterBundle/Materials/matHenryJedi.mat
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/RiftZoneCylinder.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Textures/texLightning.tif
 - Assets/RifterAssets/RifterBundle/Materials/matShotgun.mat
 - Assets/RifterAssets/RifterBundle/VFX/WRiftExplosionSmall.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Textures/texSwingEffect.png
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/RiftZoneTeamBuff.prefab
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_Utility.anim
 - Assets/RifterAssets/RifterBundle/Icons/texImperfectionFinal.png
 - Assets/RifterAssets/RifterBundle/Shader Graph/RGB to HSL.asset
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/RiftZoneFireEffect.prefab
 - Assets/RifterAssets/RifterBundle/Rifter_Emote.prefab
 - Assets/RifterAssets/RifterBundle/VFX/ArmShader.mat
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_Flinch2.anim
@@ -172,6 +222,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matInsideRift.mat
 - Assets/RifterAssets/RifterBundle/Icons/texRifterSkin.png
 - Assets/RifterAssets/RifterBundle/HenryBazookaRocketGhost.prefab
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/NemMats/Shaders/screenSlashShader.shader
 - Assets/RifterAssets/RifterBundle/Shader Graph/Pseudo Infrared Depth Filter.asset
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matSlipstreamIn.mat
 - Assets/RifterAssets/RifterBundle/Icons/texFault.png
@@ -189,6 +240,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Textures/cracked glass texture.jpg
 - Assets/RifterAssets/RifterBundle/VFX/SlipstreamIn.prefab
 - Assets/RifterAssets/RifterBundle/Icons/texWanderRift.png
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/ScreenSlashEffect.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Materials/HenryOld/matSwingShadow.mat
 - Assets/RifterAssets/RifterBundle/VFX/Materials/HenryOld/matHitSpark.mat
 - Assets/RifterAssets/RifterBundle/Mesh/meshHenryNeo.mesh
@@ -197,8 +249,11 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Materials/HenryOld/matHenrySwing2.mat
 - Assets/RifterAssets/RifterBundle/VFX/Textures/cracked glass texture 1.jpg
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature__CSSIdle.anim
+- Assets/RifterAssets/RifterBundle/mdlNemRifter.prefab
 - Assets/RifterAssets/RifterBundle/Shader Graph/riftShaderAmplify.shader
+- Assets/RifterAssets/RifterBundle/Materials/distortionMat.mat
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_AimYaw.anim
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/NemMats/matRiftShot.mat
 - Assets/RifterAssets/RifterBundle/Mesh/meshHenrySword.mesh
 - Assets/RifterAssets/RifterBundle/VFX/ShatterStack.prefab
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_Landing.anim
@@ -207,6 +262,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matHUDCharge.mat
 - Assets/RifterAssets/RifterBundle/VFX/HUDOvercharge.prefab
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature__CSS.anim
+- Assets/RifterAssets/RifterBundle/Textures/gradient.png
 - Assets/RifterAssets/RifterBundle/VFX/RiftOvercharged.prefab
 - Assets/RifterAssets/RifterBundle/VFX/WanderingRiftProjectileGhost.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Textures/texCrackedGlass.jpg
@@ -227,6 +283,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/HenryBombGhost.prefab
 - Assets/RifterAssets/RifterBundle/Materials/matBoxingGlove.mat
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matCrack.mat
+- Assets/RifterAssets/RifterBundle/NemRifterDisplay Variant.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matCrackedGlass.mat
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matFracture.mat
 - Assets/RifterAssets/RifterBundle/Mesh/MeshHenryGun.mesh
@@ -278,6 +335,7 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Materials/HenryOld/matHitSparkPunch.mat
 - Assets/RifterAssets/RifterBundle/Textures/Background@4x.png
 - Assets/RifterAssets/RifterBundle/Animation/maskGesture.mask
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/RiftZoneCube.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matWander.mat
 - Assets/RifterAssets/RifterBundle/VFX/Textures/texHenrySwing2.png
 - Assets/RifterAssets/RifterBundle/Materials/matRoy.mat
@@ -289,16 +347,19 @@ Assets:
 - Assets/RifterAssets/RifterBundle/VFX/Portal.prefab
 - Assets/RifterAssets/RifterBundle/Shader Graph/shatterShader.shader
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/Overcharged/matNoiseOvercharged.mat
-- Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/Overcharged/matInsideRiftOvercharged.mat
+- Assets/RifterAssets/RifterBundle/Shader Graph/RiftZoneOutlineShader.shader
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_Ascending.anim
+- Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/Overcharged/matInsideRiftOvercharged.mat
 - Assets/RifterAssets/RifterBundle/VFX/Materials/HenryOld/matSmoke.mat
 - Assets/RifterAssets/RifterBundle/Shader Graph/timelockShaderBorder.shader
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matRifted.mat
 - Assets/RifterAssets/RifterBundle/Shader Graph/distanceShader.shader
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/NRTeleportIndicator.prefab
 - Assets/RifterAssets/RifterBundle/VFX/Textures/texPunchImpactShadow.png
 - Assets/RifterAssets/RifterBundle/Mesh/meshVergilCoat.mesh
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/matWanderRift.mat
 - Assets/RifterAssets/RifterBundle/Animation/clips/Armature_WalkBWD.anim
 - Assets/RifterAssets/RifterBundle/VFX/Materials/Rift/Overcharged/matInsideRiftStencilEnemyOvercharged.mat
 - Assets/RifterAssets/RifterBundle/Textures/new-noise - Copy.png
+- Assets/RifterAssets/RifterBundle/VFX/NemRifter/NemMats/matScreenSlash.mat
 Dependencies: []

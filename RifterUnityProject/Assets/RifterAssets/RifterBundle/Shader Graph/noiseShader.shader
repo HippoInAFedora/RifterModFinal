@@ -216,45 +216,45 @@ inline float4 ASE_ComputeGrabScreenPos( float4 pos )
 			float4 ase_screenPos = float4( i.screenPos.xyz , i.screenPos.w + 0.00000000001 );
 			float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( ase_screenPos );
 			float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
-			float4 screenColor16_g356 = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_GrabTexture,ase_grabScreenPosNorm.xy);
-			float4 temp_output_2_0_g359 = screenColor16_g356;
-			float3 temp_output_32_0_g358 = (temp_output_2_0_g359).rgb;
-			float3 hsvTorgb39_g358 = RGBToHSV( temp_output_32_0_g358 );
-			float3 break33_g358 = temp_output_32_0_g358;
-			float dotResult30_g358 = dot( temp_output_32_0_g358 , float3(0.299,0.587,0.114) );
-			float3 appendResult40_g358 = (float3(hsvTorgb39_g358.x , ( max( break33_g358.x , max( break33_g358.y , break33_g358.z ) ) - min( break33_g358.x , min( break33_g358.y , break33_g358.z ) ) ) , dotResult30_g358));
-			float3 break565_g356 = appendResult40_g358;
-			float4 temp_output_2_0_g361 = ( 1.0 - screenColor16_g356 );
-			float3 temp_output_32_0_g360 = (temp_output_2_0_g361).rgb;
-			float3 hsvTorgb39_g360 = RGBToHSV( temp_output_32_0_g360 );
-			float3 break33_g360 = temp_output_32_0_g360;
-			float dotResult30_g360 = dot( temp_output_32_0_g360 , float3(0.299,0.587,0.114) );
-			float3 appendResult40_g360 = (float3(hsvTorgb39_g360.x , ( max( break33_g360.x , max( break33_g360.y , break33_g360.z ) ) - min( break33_g360.x , min( break33_g360.y , break33_g360.z ) ) ) , dotResult30_g360));
-			float3 appendResult567_g356 = (float3(break565_g356.x , break565_g356.y , appendResult40_g360.z));
-			float3 HSL564_g356 = appendResult567_g356;
-			float3 hsvTorgb3_g357 = HSVToRGB( float3(break565_g356.x,1.0,1.0) );
-			float3 RGB564_g356 = hsvTorgb3_g357;
-			float3 localHSLtoRGB564_g356 = HSLtoRGB( HSL564_g356 , RGB564_g356 );
-			float4 appendResult550_g356 = (float4(CalculateContrast(_contrast_Instance,float4( localHSLtoRGB564_g356 , 0.0 )).r , CalculateContrast(_contrast_Instance,float4( localHSLtoRGB564_g356 , 0.0 )).r , CalculateContrast(_contrast_Instance,float4( localHSLtoRGB564_g356 , 0.0 )).r , 0.0));
-			float4 blendOpSrc596_g356 = appendResult550_g356;
-			float4 blendOpDest596_g356 = ( 1.0 - _Near );
-			float4 blendOpSrc595_g356 = appendResult550_g356;
-			float4 blendOpDest595_g356 = ( 1.0 - _Far );
+			float4 screenColor16_g357 = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_GrabTexture,ase_grabScreenPosNorm.xy);
+			float4 temp_output_2_0_g360 = screenColor16_g357;
+			float3 temp_output_32_0_g359 = (temp_output_2_0_g360).rgb;
+			float3 hsvTorgb39_g359 = RGBToHSV( temp_output_32_0_g359 );
+			float3 break33_g359 = temp_output_32_0_g359;
+			float dotResult30_g359 = dot( temp_output_32_0_g359 , float3(0.299,0.587,0.114) );
+			float3 appendResult40_g359 = (float3(hsvTorgb39_g359.x , ( max( break33_g359.x , max( break33_g359.y , break33_g359.z ) ) - min( break33_g359.x , min( break33_g359.y , break33_g359.z ) ) ) , dotResult30_g359));
+			float3 break565_g357 = appendResult40_g359;
+			float4 temp_output_2_0_g362 = ( 1.0 - screenColor16_g357 );
+			float3 temp_output_32_0_g361 = (temp_output_2_0_g362).rgb;
+			float3 hsvTorgb39_g361 = RGBToHSV( temp_output_32_0_g361 );
+			float3 break33_g361 = temp_output_32_0_g361;
+			float dotResult30_g361 = dot( temp_output_32_0_g361 , float3(0.299,0.587,0.114) );
+			float3 appendResult40_g361 = (float3(hsvTorgb39_g361.x , ( max( break33_g361.x , max( break33_g361.y , break33_g361.z ) ) - min( break33_g361.x , min( break33_g361.y , break33_g361.z ) ) ) , dotResult30_g361));
+			float3 appendResult567_g357 = (float3(break565_g357.x , break565_g357.y , appendResult40_g361.z));
+			float3 HSL564_g357 = appendResult567_g357;
+			float3 hsvTorgb3_g358 = HSVToRGB( float3(break565_g357.x,1.0,1.0) );
+			float3 RGB564_g357 = hsvTorgb3_g358;
+			float3 localHSLtoRGB564_g357 = HSLtoRGB( HSL564_g357 , RGB564_g357 );
+			float4 appendResult550_g357 = (float4(CalculateContrast(_contrast_Instance,float4( localHSLtoRGB564_g357 , 0.0 )).r , CalculateContrast(_contrast_Instance,float4( localHSLtoRGB564_g357 , 0.0 )).r , CalculateContrast(_contrast_Instance,float4( localHSLtoRGB564_g357 , 0.0 )).r , 0.0));
+			float4 blendOpSrc596_g357 = appendResult550_g357;
+			float4 blendOpDest596_g357 = ( 1.0 - _Near );
+			float4 blendOpSrc595_g357 = appendResult550_g357;
+			float4 blendOpDest595_g357 = ( 1.0 - _Far );
 			float4 ase_screenPosNorm = ase_screenPos / ase_screenPos.w;
 			ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
-			float eyeDepth185_g356 = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE( _CameraDepthTexture, ase_screenPosNorm.xy ));
-			float3 unityObjectToViewPos184_g356 = UnityObjectToViewPos( float3( 0,0,0 ) );
-			float clampResult190_g356 = clamp( ( ( eyeDepth185_g356 - distance( unityObjectToViewPos184_g356 , float3( 0,0,0 ) ) ) / _TransitionDistance ) , 0.0 , 1.0 );
-			float4 lerpResult627_g356 = lerp( ( saturate( (( blendOpDest596_g356 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest596_g356 ) * ( 1.0 - blendOpSrc596_g356 ) ) : ( 2.0 * blendOpDest596_g356 * blendOpSrc596_g356 ) ) )) , ( saturate( (( blendOpDest595_g356 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest595_g356 ) * ( 1.0 - blendOpSrc595_g356 ) ) : ( 2.0 * blendOpDest595_g356 * blendOpSrc595_g356 ) ) )) , pow( clampResult190_g356 , _TransitionFalloff ));
-			o.Albedo = ( 1.0 - lerpResult627_g356 ).rgb;
+			float eyeDepth185_g357 = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE( _CameraDepthTexture, ase_screenPosNorm.xy ));
+			float3 unityObjectToViewPos184_g357 = UnityObjectToViewPos( float3( 0,0,0 ) );
+			float clampResult190_g357 = clamp( ( ( eyeDepth185_g357 - distance( unityObjectToViewPos184_g357 , float3( 0,0,0 ) ) ) / _TransitionDistance ) , 0.0 , 1.0 );
+			float4 lerpResult627_g357 = lerp( ( saturate( (( blendOpDest596_g357 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest596_g357 ) * ( 1.0 - blendOpSrc596_g357 ) ) : ( 2.0 * blendOpDest596_g357 * blendOpSrc596_g357 ) ) )) , ( saturate( (( blendOpDest595_g357 > 0.5 ) ? ( 1.0 - 2.0 * ( 1.0 - blendOpDest595_g357 ) * ( 1.0 - blendOpSrc595_g357 ) ) : ( 2.0 * blendOpDest595_g357 * blendOpSrc595_g357 ) ) )) , pow( clampResult190_g357 , _TransitionFalloff ));
+			o.Albedo = ( 1.0 - lerpResult627_g357 ).rgb;
 			o.Emission = temp_output_144_0.rgb;
 			float lerpResult207 = lerp( ( 1.0 - i.uv_texcoord.x ) , -1.0 , 0.2);
-			float2 appendResult10_g354 = (float2(1.0 , 0.5));
-			float2 temp_output_11_0_g354 = ( abs( (i.uv_texcoord*2.0 + -1.0) ) - appendResult10_g354 );
-			float2 break16_g354 = ( 1.0 - ( temp_output_11_0_g354 / fwidth( temp_output_11_0_g354 ) ) );
+			float2 appendResult10_g356 = (float2(1.0 , 0.5));
+			float2 temp_output_11_0_g356 = ( abs( (i.uv_texcoord*2.0 + -1.0) ) - appendResult10_g356 );
+			float2 break16_g356 = ( 1.0 - ( temp_output_11_0_g356 / fwidth( temp_output_11_0_g356 ) ) );
 			float temp_output_229_0 = ( 1.0 - i.uv_texcoord.y );
 			float lerpResult219 = lerp( temp_output_229_0 , 0.0 , temp_output_229_0);
-			float clampResult235 = clamp( ( ( lerpResult207 * saturate( min( break16_g354.x , break16_g354.y ) ) ) + ( ( lerpResult219 * 5.0 ) * lerpResult207 ) ) , 0.0 , 1.0 );
+			float clampResult235 = clamp( ( ( lerpResult207 * saturate( min( break16_g356.x , break16_g356.y ) ) ) + ( ( lerpResult219 * 5.0 ) * lerpResult207 ) ) , 0.0 , 1.0 );
 			o.Alpha = clampResult235;
 		}
 
@@ -265,9 +265,9 @@ inline float4 ASE_ComputeGrabScreenPos( float4 pos )
 /*ASEBEGIN
 Version=19403
 Node;AmplifyShaderEditor.RangedFloatNode;226;-2384,-272;Inherit;False;Property;_Speed;Speed;7;0;Create;True;0;0;0;False;0;False;0;0.0241;0;0.5;0;1;FLOAT;0
+Node;AmplifyShaderEditor.CommentaryNode;100;-1616,-1104;Inherit;False;1227;603;;7;119;115;111;110;107;106;97;Noise Normals;1,1,1,1;0;0
 Node;AmplifyShaderEditor.SimpleTimeNode;211;-2064,-272;Inherit;False;1;0;FLOAT;0.01;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TextureCoordinatesNode;194;-1776,128;Inherit;True;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.CommentaryNode;100;-1616,-1104;Inherit;False;1227;603;;7;119;115;111;110;107;106;97;Noise Normals;1,1,1,1;0;0
 Node;AmplifyShaderEditor.TexturePropertyNode;189;-1648,-544;Inherit;True;Property;_Texture0;Texture 0;8;0;Create;True;0;0;0;False;0;False;None;1b0165733eeed2d499806cdd83d6319f;False;white;Auto;Texture2D;-1;0;2;SAMPLER2D;0;SAMPLERSTATE;1
 Node;AmplifyShaderEditor.WorldPosInputsNode;106;-1536,-1056;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.TexCoordVertexDataNode;107;-1552,-896;Inherit;False;1;4;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
@@ -286,7 +286,7 @@ Node;AmplifyShaderEditor.OneMinusNode;228;-640,16;Inherit;False;1;0;FLOAT;0;Fals
 Node;AmplifyShaderEditor.LerpOp;219;-512,144;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;119;-624,-928;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0.01;False;1;FLOAT;0
 Node;AmplifyShaderEditor.FunctionNode;118;-672,-416;Inherit;False;ComputeFilterWidth;-1;;355;326bea850683cca44ae7af083d880d70;0;1;1;FLOAT3;0,0,0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;204;-480,-112;Inherit;False;Rectangle;-1;;354;6b23e0c975270fb4084c354b2c83366a;0;3;1;FLOAT2;0,0;False;2;FLOAT;1;False;3;FLOAT;0.5;False;1;FLOAT;0
+Node;AmplifyShaderEditor.FunctionNode;204;-480,-112;Inherit;False;Rectangle;-1;;356;6b23e0c975270fb4084c354b2c83366a;0;3;1;FLOAT2;0,0;False;2;FLOAT;1;False;3;FLOAT;0.5;False;1;FLOAT;0
 Node;AmplifyShaderEditor.LerpOp;207;-464,16;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;-1;False;2;FLOAT;0.2;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;233;-368,144;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;5;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;124;-336,-432;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
@@ -296,7 +296,7 @@ Node;AmplifyShaderEditor.SimpleMultiplyOpNode;208;-192,-32;Inherit;False;2;2;0;F
 Node;AmplifyShaderEditor.ColorNode;132;-32,-320;Inherit;False;InstancedProperty;_Color1;Color 0;9;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;1.098039,1.098039,1.098039,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleContrastOpNode;127;-48,-544;Inherit;True;2;1;COLOR;0,0,0,0;False;0;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;206;-16,-144;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.FunctionNode;171;320,-576;Inherit;False;Pseudo Infrared Depth Filter;1;;356;4bc39d876d298f146ab93bfb360a07ba;0;1;628;FLOAT2;0,0;False;1;COLOR;78
+Node;AmplifyShaderEditor.FunctionNode;171;320,-576;Inherit;False;Pseudo Infrared Depth Filter;1;;357;4bc39d876d298f146ab93bfb360a07ba;0;1;628;FLOAT2;0,0;False;1;COLOR;78
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;144;320,-400;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.ClampOpNode;235;384,-176;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.OneMinusNode;172;672,-448;Inherit;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0
@@ -343,4 +343,4 @@ WireConnection;68;1;144;0
 WireConnection;68;2;144;0
 WireConnection;68;9;235;0
 ASEEND*/
-//CHKSM=D0F8A597F17D28EF0DBF04541513FF0EBAA7E0D7
+//CHKSM=D738ADB3EAFE07DFB370A519A30075513EFDD96C

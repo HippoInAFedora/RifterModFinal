@@ -12,8 +12,8 @@ namespace RifterMod.Survivors.Rifter.Achievements
     [RegisterAchievement(identifier, unlockableIdentifier, null, 5, null)]
     public class BuckshotAchievement : BaseAchievement
     {
-        public const string identifier = RifterSurvivor.Rifter_PREFIX + "BUCKSHOT_ACHIEVEMENT";
-        public const string unlockableIdentifier = RifterSurvivor.Rifter_PREFIX + "BUCKSHOT_UNLOCKABLE";
+        public const string identifier = RifterSurvivor.RIFTER_PREFIX + "BUCKSHOT_ACHIEVEMENT";
+        public const string unlockableIdentifier = RifterSurvivor.RIFTER_PREFIX + "BUCKSHOT_UNLOCKABLE";
 
         public override BodyIndex LookUpRequiredBodyIndex()
         {

@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 namespace RifterMod.Characters.Survivors.Rifter.SkillStates.UnusedStates
 {
-    public class EntanglementLocate : RiftRiderLocate
+    public class EntanglementLocate : NemTeleportLocate
     {
         public override void FixedUpdate()
         {

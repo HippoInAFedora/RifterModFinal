@@ -55,7 +55,7 @@
 
 	<ItemGroup>
 	  <Reference Include="CustomEmotesAPI">
-	    <HintPath>C:\Users\15039\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\Seekers of da Stahrm\BepInEx\plugins\MetrosexualFruitcake-CustomEmotesAPI\CustomEmotesAPI.dll</HintPath>
+	    <HintPath>C:\Users\15039\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\Dev\BepInEx\plugins\MetrosexualFruitcake-CustomEmotesAPI\CustomEmotesAPI.dll</HintPath>
 	  </Reference>
 	  <Reference Include="MMHOOK_RoR2">
 	    <HintPath>C:\Users\15039\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\Seekers of da Stahrm\BepInEx\plugins\MMHOOK\MMHOOK_RoR2.dll</HintPath>
