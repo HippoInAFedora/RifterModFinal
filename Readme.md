@@ -1,2 +1,2 @@
-# Henry Tutorial
-Head to the [Wiki](https://github.com/ArcPh1r3/HenryTutorial/wiki) tab to get started.
+# Rifter Mod Final
+This is the repo for the last updates from the original modder for Rifter (hi!). It has some wip NemRifter code that's hidden and supposedly everything you'd need to maintain it. I know it's a mess, sorry about that! Feel free use this to take over, (steal), adjust, and quite possibly improve to your hearts content.
